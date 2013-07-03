@@ -1,4 +1,0 @@
-# Module de.uni_koeln.spinfo.wafs.Wafs
-# RPC service class, partial path of RPC policy file
-com.google.gwt.logging.shared.RemoteLoggingService, 5F6BDAF30AB9ACFF6BED77EC69AA326A.gwt.rpc
-de.uni_koeln.spinfo.wafs.gwt.shared.MusicService, 5958F0FCF8B00ADB21ADA15F1CC36428.gwt.rpc
