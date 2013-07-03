@@ -71,7 +71,7 @@ public class Searcher {
 		
 		// IndexSearcher sucht nach der übergebenen Query und liefert die 10
 		// besten Resultate
-		TopDocs hits = is.search(query, 10);
+		TopDocs hits = is.search(query, 1);
 		long end = System.currentTimeMillis();
 		System.err.println("Took " + (end - start) + " ms to find "
 				+ hits.totalHits + " document(s) that matched query '" + q

@@ -57,7 +57,7 @@ public class Indexer {
 		StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_42, set);
 		
 		// Alternativ kann die Liste der Stopwörtern mit einem Reader übergeben werden 
-		// StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_42, new FileReader(new File("stopWords")));
+		//StandardAnalyzer analyzer = new StandardAnalyzer(Version.LUCENE_42, new FileReader(new File(stopWords)));
 		
 		IndexWriterConfig writerConfig = new IndexWriterConfig(Version.LUCENE_42, analyzer);
 		
@@ -115,6 +115,7 @@ public class Indexer {
 		// Der StringBuilder ist bei der Verknüpfung von Strings wesentlich 
 		// perfomanter, als die Variante: 
 		// line += line + " ";
+		// ...und sollte daher stehts bevorzugt werden.
 		while ((line = br.readLine()) != null) {
 			sb.append(line);
 		}
@@ -122,12 +123,10 @@ public class Indexer {
 		// BufferedReader wird geschlossen
 		br.close();
 		
-		// Dem Dokument werden Felder übergeben. Der erste Parameter des Feldes ist 
-		// der Name des Feldes (Schlüssel), der zweite ein konkreter Wert. Der dritte 
-		// Parameter legt fest, ob der Originalwert mit indexiert wird, d.h. ohne 
-		// einen Analyzer zu gebrauchen
+		// Dem Dokument werden Felder übergeben. Der erste Parameter ist 
+		// ein beliebiger Name (key), der zweite Parameter ein konkreter Wert (value). 
 		
-		doc.add(new TextField("contents", sb.toString(), Store.NO));
+		doc.add(new TextField("contents", sb.toString(), Store.YES));
 		doc.add(new StringField("filename", f.getCanonicalPath(), Store.YES));
 		
 		// Dokument wird zurückgegeben
